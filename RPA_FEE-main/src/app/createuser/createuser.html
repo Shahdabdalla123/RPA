@@ -1,0 +1,149 @@
+<div class="container py-5 ">
+    <div class="row justify-content-center ">
+        <div class="col-lg-8 col-md-10">
+            <div class="card border-0 shadow-lg rounded-4">
+                <div class="card-header bg-primary text-white text-center py-3 rounded-top-4">
+                    <h4 class="mb-0"><i class="bi bi-person-plus me-2"></i>Add User</h4>
+                </div>
+                <div class="card-body p-4 p-md-5">
+                    <form [formGroup]="CreateuserForm" (ngSubmit)="onSubmit()">
+                        <!-- First Name -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold text-secondary">
+                                First Name
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="bi bi-person text-primary"></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0 ps-1"
+                                    placeholder="Enter first name" formControlName="fName">
+
+                            </div>
+                            <div class="text-danger"
+                                *ngIf="CreateuserForm.get('fName')?.touched && CreateuserForm.get('fName')?.invalid">
+                                firstName is required
+                            </div>
+                            <div class="text-danger"
+                                *ngIf="CreateuserForm.get('fName')?.touched && CreateuserForm.get('fName')?.hasError('pattern')">
+                                Only letters and spaces allowed
+                            </div>
+                        </div>
+
+                        <!-- Last Name -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold text-secondary">
+                                Last Name
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="bi bi-person text-primary"></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0 ps-1"
+                                    placeholder="Enter last name" formControlName="lName">
+
+                            </div>
+                            <div class="text-danger"
+                                *ngIf="CreateuserForm.get('lName')?.touched && CreateuserForm.get('lName')?.invalid">
+                                lastName is required
+                            </div>
+                            <div class="text-danger"
+                                *ngIf="CreateuserForm.get('lName')?.touched && CreateuserForm.get('lName')?.hasError('pattern')">
+                                Only letters and spaces allowed
+                            </div>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold text-secondary">
+                                Email
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="bi bi-envelope text-primary"></i>
+                                </span>
+                                <input type="email" class="form-control border-start-0 ps-1"
+                                    placeholder="Enter email address" formControlName="email">
+
+                            </div>
+                            <div class="text-danger"
+                                *ngIf="CreateuserForm.get('email')?.touched && CreateuserForm.get('email')?.invalid">
+                                Email is required
+                            </div>
+                            <div class="text-danger"
+                                *ngIf="CreateuserForm.get('email')?.touched && CreateuserForm.get('email')?.hasError('pattern')">
+                                Please Enter Valid Email
+                            </div>
+                        </div>
+
+                        <!-- Password -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold text-secondary">
+                                Password
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="bi bi-key text-primary"></i>
+                                </span>
+                                <input [type]="showPassword ? 'text' : 'password'"
+                                    class="form-control border-start-0 ps-1" placeholder="Create a password"
+                                    formControlName="password">
+                                <span class="input-group-text bg-light border-0" style="cursor: pointer;"
+                                    (click)="togglePasswordVisibility()">
+                                    <i class="bi fs-5" [class.bi-eye-fill]="showPassword"
+                                        [class.bi-eye-slash-fill]="!showPassword"></i>
+                                </span>
+                            </div>
+                            <div *ngIf="CreateuserForm.get('password')?.invalid && CreateuserForm.get('password')?.touched"
+                                class="invalid-feedback d-block">
+                                <div *ngIf="CreateuserForm.get('password')?.errors?.['required']">Password is required
+                                </div>
+                                <div *ngIf="CreateuserForm.get('password')?.errors?.['minlength']">Password must be at
+                                    least 6
+                                    characters</div>
+                                <div *ngIf="CreateuserForm.get('password')?.errors?.['maxlength']">Password must not
+                                    exceed 100
+                                    characters</div>
+                                <div *ngIf="CreateuserForm.get('password')?.errors?.['pattern']">
+                                    Requiered uppercase,lowercase letter and special character
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Role -->
+                        <div class="mb-4">
+                            <label class="form-label fw-semibold text-secondary">
+                                Role
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0">
+                                    <i class="bi bi-tag text-primary"></i>
+                                </span>
+                                <input type="text" class="form-control border-start-0 ps-1" placeholder="Enter Role"
+                                    formControlName="role">
+
+                            </div>
+                            <div class="text-danger"
+                                *ngIf="CreateuserForm.get('role')?.touched && CreateuserForm.get('role')?.invalid">
+                                Role is required
+                            </div>
+                            <div class="text-danger"
+                                *ngIf="CreateuserForm.get('role')?.touched && CreateuserForm.get('role')?.hasError('pattern')">
+                                Only letters and spaces allowed
+                            </div>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid mt-4">
+                            <button class="btn btn-primary btn-lg rounded-pill py-2 fs-5" [disabled]="CreateuserForm.invalid">
+                                Create
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
